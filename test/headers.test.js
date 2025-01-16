@@ -2,7 +2,6 @@ import { html, fixture, expect } from '@open-wc/testing';
 import sinon, { stub} from 'sinon';
 import { Header } from '../src/header/Header.js';
 describe('loan-header', () => {
-  // Write test cases inside this block
   let el, enBtn, nlBtn, localeChangedSpy;
 
   beforeEach(async () => {
@@ -12,7 +11,11 @@ describe('loan-header', () => {
     localeChangedSpy = sinon.spy(el, 'localeChanged');
   });
 
-  it('check the en-GB button on load', async() => {
+  afterEach(() => {
+    localeChangedSpy.restore();
+  })
+
+  it('check the active en-GB button on load', async() => {
   expect(enBtn.getAttribute('class')).to.contain('bg-btn-color');
   expect(nlBtn.getAttribute('class')).not.to.contain('bg-btn-color');
   expect(enBtn.getAttribute('class')).not.to.contain('btn-cursor');
