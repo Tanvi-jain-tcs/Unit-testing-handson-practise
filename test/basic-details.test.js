@@ -15,7 +15,7 @@ describe('Basic details', () => {
     expect(el.emiCalc).to.equal(0);
   });
 
-  it("Previous button click", () => {
+  it("check previous button click", () => {
     const routerSpy = sinon.spy(Router, 'go');
     const prevBtn = el.shadowRoot?.querySelector('.btn-previous');
     prevBtn.click();

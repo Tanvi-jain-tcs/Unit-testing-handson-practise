@@ -251,7 +251,7 @@ export class CustomerDetails extends LocalizeMixin(LitElement) {
               ></lion-checkbox>
             </lion-checkbox-group>
             <div style="display:flex ;justify-content: space-between;">
-              <lion-button
+              <lion-button id="back-btn"
                 class="backbg-btn-color"
                 raised
                 @click=${this._toEmidetails}
