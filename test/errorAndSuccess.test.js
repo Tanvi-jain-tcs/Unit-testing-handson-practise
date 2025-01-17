@@ -1,47 +1,40 @@
 import { html, fixture, expect } from '@open-wc/testing';
-// import { stub } from 'sinon';
-import Sinon, { stub } from 'sinon';
+import sinon, { stub } from 'sinon';
 import '../src/SuccessAndError/Success.js';
 import '../src/SuccessAndError/Error.js';
+import { Router } from '@vaadin/router';
 
-let el;
+describe('Success window ', () => {
+    let el;
 
-describe('Success screen ', () => {
-  // Write test cases inside this block
-
-    beforeEach(async () => {
+    before(async () => {
         el = await fixture(html`<loan-success></loan-success>`);
     });
 
-    it('Accessible', async () => {
-        expect(el).to.be.accessible();
-    });
-
-    it('checking for home method', () => {
-        const myFunction = Sinon.stub(el, "_toHome");
-        const button = el.shadowRoot.querySelectorAll('lion-button');
-        el.requestUpdate();
-        button[0].click();
-        expect(myFunction).to.have.callCount(0);
+    it('check home button click', () => {
+        const routerSpy = sinon.spy(Router, 'go')
+        const homeBtn = el.shadowRoot?.querySelector('.home-btn');
+        homeBtn.click();
+        expect(routerSpy).to.have.called;
+        expect(routerSpy.firstCall.args[0]).to.equal('/');
+        routerSpy.restore();
     });
 
 });
 
-describe('error screen', () => {
-  // Write test cases inside this block
+describe('error window', () => {
+    let el;
 
-    beforeEach(async () => {
+    before(async () => {
         el = await fixture(html`<loan-error></loan-error>`);
     });
 
-    it('Accessible', async () => {
-        expect(el).to.be.accessible();
-    });
-
-    it('checking for home method', () => {
-        const myFunction = Sinon.spy(el, "_toHome");
-        const button = el.shadowRoot.querySelectorAll('lion-button');
-        button[0].click();
-        expect(myFunction.calledOnce).to.be.false;
+    it('check home button click', () => {
+        const routerSpy = sinon.spy(Router, 'go')
+        const homeBtn = el.shadowRoot?.querySelector('.home-btn');
+        homeBtn.click();
+        expect(routerSpy).to.have.called;
+        expect(routerSpy.firstCall.args[0]).to.equal('/');
+        routerSpy.restore();
     });
   });
