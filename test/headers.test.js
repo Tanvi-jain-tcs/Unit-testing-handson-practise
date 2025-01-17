@@ -31,12 +31,12 @@ describe('loan-header', () => {
     expect(nlBtn.getAttribute('class')).not.to.contain('btn-cursor');
     })
 
-    it('check the en-GB button Click', async() => {
-      enBtn.click()
-      expect(localeChangedSpy.callCount).to.equal(1);
-      expect(enBtn.getAttribute('class')).to.contain('bg-btn-color');
-      expect(nlBtn.getAttribute('class')).not.to.contain('bg-btn-color');
-      expect(enBtn.getAttribute('class')).not.to.contain('btn-cursor');
-      expect(nlBtn.getAttribute('class')).to.contain('btn-cursor');
-      })
+  it('check the en-GB button Click', async() => {
+    enBtn.click()
+    expect(localeChangedSpy.callCount).to.equal(1);
+    expect(enBtn.getAttribute('class')).to.contain('bg-btn-color');
+    expect(nlBtn.getAttribute('class')).not.to.contain('bg-btn-color');
+    expect(enBtn.getAttribute('class')).not.to.contain('btn-cursor');
+    expect(nlBtn.getAttribute('class')).to.contain('btn-cursor');
+    })
 });
