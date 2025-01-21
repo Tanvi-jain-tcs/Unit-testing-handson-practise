@@ -1,5 +1,4 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import sinon, { stub } from 'sinon';
 import '../loan-application.js';
 
 describe('LoanApplication', () => {
@@ -8,7 +7,11 @@ describe('LoanApplication', () => {
         el = await fixture(html`<loan-application></loan-application>`);
     });
 
-    it('check for counter value', () => {
+    it('should check component accessibility', () => {
+        expect(el).to.be.accessible;
+    });
+
+    it('should check for counter value', () => {
         expect(el.counter).to.equal(5);
     })
 });

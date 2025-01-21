@@ -9,13 +9,29 @@ describe('Basic details', () => {
     el = await fixture(html`<basic-details></basic-details>`);
   });
   
-  it('check initial values', () => {
+  it('should check component accessibility', () => {
+    const heading = el.shadowRoot.querySelector('h2');
+    expect(el).to.be.accessible;
+    expect(heading).to.be.accessible;
+  });
+
+  it('should check component elements', () => {
+    const form = el.shadowRoot.querySelector('form');
+    const input = el.shadowRoot.querySelector('lion-input');
+    const button = el.shadowRoot.querySelectorAll('lion-button');
+    expect(form).to.exist;
+    expect(input).to.exist;
+    expect(button).to.exist;
+    expect(button.length).to.equal(2)
+  });
+
+  it('should check initial values', () => {
     expect(el.amount).to.equal(10000);
     expect(el.range).to.equal(2);
     expect(el.emiCalc).to.equal(0);
   });
 
-  it("check previous button click", () => {
+  it("should check previous button click", () => {
     const routerSpy = sinon.spy(Router, 'go');
     const prevBtn = el.shadowRoot?.querySelector('.btn-previous');
     prevBtn.click();
